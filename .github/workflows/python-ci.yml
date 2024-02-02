@@ -28,7 +28,7 @@ jobs:
       run: flake8 pycode.py
 
     - name: Testing
-      run: pycode.py
+      run: python pycode.py
 
   deploy_local:
     needs: build
