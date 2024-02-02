@@ -28,4 +28,18 @@ jobs:
       run: flake8 hello_world.py
 
     - name: Testing
-      run: python pycode.py
+      run: pycode.py
+
+  deploy_local:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Vagrant
+        run: vagrant --version || sudo apt-get install vagrant
+
+      - name: Deploy to Local Environment
+        run: |
+          bash deploy_local.sh
