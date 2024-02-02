@@ -25,7 +25,7 @@ jobs:
         # Add other dependencies as needed
 
     - name: Linting
-      run: flake8 hello_world.py
+      run: flake8 pycode.py
 
     - name: Testing
       run: pycode.py
