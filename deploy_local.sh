@@ -4,6 +4,5 @@
 sudo apt-get update
 sudo apt-get install -y --fix-missing librbd1
 sudo apt-get install -y python
-
-# Run your Python script
-python pycode.py
+python -m pip install --upgrade pip
+python /path/to/your/pycode.py
