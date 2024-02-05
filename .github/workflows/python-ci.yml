@@ -31,20 +31,3 @@ jobs:
 
     - name: Testing
       run: python pycode.py
-
-  deploy_local:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up deployment environment
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y --fix-missing librbd1
-          sudo apt-get install -y python
-          python -m pip install --upgrade pip
-
-      - name: Deploy locally
-        run: bash deploy_local.sh
