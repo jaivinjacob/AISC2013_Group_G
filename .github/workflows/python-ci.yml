@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Build and Deploy Locally
 
 on:
   push:
@@ -6,28 +6,18 @@ on:
       - main
 
 jobs:
-  build:
+  build_and_deploy:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.8
+    - name: Set up Docker
+      run: docker --version
 
-    - name: Install dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y --fix-missing librbd1
-        python -m pip install --upgrade pip
-        pip install flake8
-        # Add other dependencies as needed
+    - name: Build Docker image
+      run: docker build -t my-python-app -f Dockerfile.local .
 
-    - name: Linting
-      run: flake8 pycode.py
-
-    - name: Testing
-      run: python pycode.py
+    - name: Run Docker container
+      run: docker run my-python-app
