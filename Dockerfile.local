@@ -1,0 +1,16 @@
+FROM ubuntu:latest
+
+# Install necessary dependencies
+RUN apt-get update && \
+    apt-get install -y --fix-missing \
+    librbd1 \
+    python3
+
+# Set the working directory
+WORKDIR /app
+
+# Copy your Python code into the container
+COPY . .
+
+# Run your Python script
+CMD ["python3", "pycode.py"]
