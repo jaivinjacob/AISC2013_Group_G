@@ -20,6 +20,8 @@ jobs:
 
     - name: Install dependencies
       run: |
+        sudo apt-get update
+        sudo apt-get install -y --fix-missing librbd1
         python -m pip install --upgrade pip
         pip install flake8
         # Add other dependencies as needed
@@ -42,4 +44,7 @@ jobs:
 
       - name: Deploy to Local Environment
         run: |
-          bash deploy_local.sh
+          sudo apt-get update
+          sudo apt-get install -y --fix-missing librbd1
+          vagrant up
+          vagrant ssh -c "sudo apt-get install -y python && python /vagrant/pycode.py"
